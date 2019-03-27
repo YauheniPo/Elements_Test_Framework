@@ -8,7 +8,6 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import popo.elems.framework.base.BasePage;
-import popo.elems.framework.base.elements.annotation.Element;
 import popo.elems.framework.base.elements.annotation.ISetup;
 
 import java.lang.annotation.Annotation;
@@ -21,20 +20,33 @@ import static com.codeborne.selenide.Selenide.$$;
 @Log4j2
 @RequiredArgsConstructor
 @NoArgsConstructor
-public class G2Element<L extends BasePage> extends BaseElement implements ISetup {
+public class Element<L extends BasePage> extends BaseElement implements ISetup {
 
     @NonNull
     protected L landingPage;
     protected String xPath;
     protected String xPathPart;
 
-    public G2Element<L> setXPathPart(String xPathPart) {
+    private String getXPath(String xPath) {
+        return String.format(xPath, this.xPathPart);
+    }
+
+    private String getXPath() {
+        return getXPath(this.xPath);
+    }
+
+    public Element<L> setXPathPart(String xPathPart) {
         this.xPathPart = xPathPart;
         return this;
     }
 
+    public Element<L> fetchElement() {
+        super.setSelenideElement($(byXpath(getXPath())).shouldBe(Condition.exist));
+        return this;
+    }
+
     protected L clickElement(String xPath) {
-        $(byXpath(xPath)).shouldBe(Condition.enabled).click();
+        $(byXpath(getXPath(xPath))).shouldBe(Condition.enabled).click();
         return this.landingPage;
     }
 
@@ -43,11 +55,11 @@ public class G2Element<L extends BasePage> extends BaseElement implements ISetup
     }
 
     protected boolean isElementExists(String xPath) {
-        return $(byXpath(xPath)).exists();
+        return $(byXpath(getXPath(xPath))).exists();
     }
 
     public boolean isElementExists() {
-        return isElementExists(String.format(this.xPath, this.xPathPart));
+        return isElementExists(this.xPath);
     }
 
     protected String getText() {
@@ -55,15 +67,15 @@ public class G2Element<L extends BasePage> extends BaseElement implements ISetup
     }
 
     protected String getText(String xPath) {
-        return $(byXpath(xPath)).getText();
+        return $(byXpath(getXPath(xPath))).getText();
     }
 
     protected SelenideElement findElement(String xPath) {
-        return $(byXpath(xPath));
+        return $(byXpath(getXPath(xPath)));
     }
 
     protected ElementsCollection findElements(String xPath) {
-        return $$(byXpath(xPath));
+        return $$(byXpath(getXPath(xPath)));
     }
 
     @Override
@@ -72,7 +84,7 @@ public class G2Element<L extends BasePage> extends BaseElement implements ISetup
         for (Annotation annotation : annotations) {
             String annotationName = annotation.annotationType().getName();
             if ("popo.elems.framework.base.elements.annotation.Element".equals(annotationName)) {
-                this.xPath = f.getAnnotation(Element.class).хPath();
+                this.xPath = f.getAnnotation(popo.elems.framework.base.elements.annotation.Element.class).хPath();
             }
         }
     }

@@ -4,21 +4,21 @@ import lombok.NoArgsConstructor;
 import popo.elems.framework.base.BasePage;
 
 @NoArgsConstructor
-public class G2Button<L extends BasePage, T extends BasePage> extends G2Element {
+public class Button<L extends BasePage, T extends BasePage> extends Element {
 
     private T targetPage;
 
-    public G2Button(L landingPage, T targetPage) {
+    public Button(L landingPage, T targetPage) {
         super(landingPage);
         this.targetPage = targetPage;
     }
 
-    public G2Button(String xPath) {
+    public Button(String xPath) {
         super.xPath = xPath;
     }
 
     public T clickButton() {
-        clickElement(super.xPath);
+        clickElement();
         return this.targetPage;
     }
 }

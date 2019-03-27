@@ -2,9 +2,9 @@ package popo.elems.framework.base.elements;
 
 import popo.elems.framework.base.BasePage;
 
-public class G2CheckBox<L extends BasePage> extends G2Element {
+public class InputField<L extends BasePage> extends Element {
 
-    public G2CheckBox(L landingPage) {
+    public InputField(L landingPage) {
         super(landingPage);
     }
 }

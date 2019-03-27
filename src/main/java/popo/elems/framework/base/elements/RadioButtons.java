@@ -2,9 +2,9 @@ package popo.elems.framework.base.elements;
 
 import popo.elems.framework.base.BasePage;
 
-public class G2RadioButtons<L extends BasePage> extends G2Element {
+public class RadioButtons<L extends BasePage> extends Element {
 
-    public G2RadioButtons(L landingPage) {
+    public RadioButtons(L landingPage) {
         super(landingPage);
     }
 

@@ -2,9 +2,9 @@ package popo.elems.framework.base.elements;
 
 import popo.elems.framework.base.BasePage;
 
-public class G2Label<L extends BasePage> extends G2Element {
+public class Label<L extends BasePage> extends Element {
 
-    public G2Label(L landingPage) {
+    public Label(L landingPage) {
         super(landingPage);
     }
 

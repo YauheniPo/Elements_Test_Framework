@@ -1,6 +1,5 @@
 package popo.elems.app.pages;
 
-import com.codeborne.selenide.SelenideElement;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -11,13 +10,14 @@ import popo.elems.framework.helpers.Locators;
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
-import static popo.elems.app.Contants.REG_EXP_NUMBER_BETWEEN_BRACKETS;
+import static popo.elems.app.Constants.REG_EXP_NUMBER_BETWEEN_BRACKETS;
 
 @Log4j2
 @RequiredArgsConstructor
-public class SortingPanel<R extends WatchBrandPage> extends BasePage {
+public class SortingPanel<R extends BrandPage> extends BasePage {
 
 //    private final SelenideElement sortingSidebar = $(Locators.get("watch.sort")).waitUntil(exist, 6000);
+
     @NonNull private R watchBrandPage;
 
     public SortingPanel switchSortingItem(SortingItem item) {

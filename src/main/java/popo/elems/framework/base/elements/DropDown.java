@@ -2,9 +2,9 @@ package popo.elems.framework.base.elements;
 
 import popo.elems.framework.base.BasePage;
 
-public class G2InputField<L extends BasePage> extends G2Element {
+public class DropDown<L extends BasePage> extends Element {
 
-    public G2InputField(L landingPage) {
+    public DropDown(L landingPage) {
         super(landingPage);
     }
 }
