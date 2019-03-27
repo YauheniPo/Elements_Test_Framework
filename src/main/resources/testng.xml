@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="elems_page" parallel="true" thread-count="10">
+<suite name="elems" parallel="true" thread-count="10">
 
     <test name="Default" parallel="methods" thread-count="10">
         <classes>

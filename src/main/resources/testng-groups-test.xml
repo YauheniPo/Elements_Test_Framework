@@ -4,7 +4,7 @@
     <test parallel="methods" thread-count="10" name="groups"> <!--group-by-instances="true"-->
         <groups>
             <run>
-                <include name="menu"/>
+                <include name="elems"/>
             </run>
         </groups>
         <packages>

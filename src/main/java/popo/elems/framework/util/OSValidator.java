@@ -1,8 +1,10 @@
 package popo.elems.framework.util;
 
-public class OSValidator {
+import java.util.Locale;
 
-    public static String OS = System.getProperty("os.name").toLowerCase();
+public final class OSValidator {
+
+    public static final String OS = System.getProperty("os.name").toLowerCase(Locale.ENGLISH);
 
     public static boolean isWindows() {
         return OS.contains("win");

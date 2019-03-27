@@ -9,11 +9,11 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class WatchBrandPage extends BasePage {
 
-//    public final SortingPanel<WatchBrandPage> sortingPanel = new SortingPanel<>(this);
-//    private SelenideElement productsPanel = $(Locators.getByPartialClassTextOfElement(
-//            Locators.LocatorElement.DIV, Locators.getLocator("watch.items"))).shouldBe(Condition.visible);
-//
-//    public int getCountWatches() {
-//        return productsPanel.findAll(Locators.getByXpath(".//li")).size();
-//    }
+    public final SortingPanel<WatchBrandPage> sortingPanel = new SortingPanel<>(this);
+    private SelenideElement productsPanel = $(Locators.getByPartialClassTextOfElement(
+            Locators.LocatorElement.DIV, Locators.getLocator("watch.items"))).shouldBe(Condition.visible);
+
+    public int getCountWatches() {
+        return productsPanel.findAll(Locators.getByXpath(".//li")).size();
+    }
 }

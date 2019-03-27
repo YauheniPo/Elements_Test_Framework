@@ -12,7 +12,7 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class MenuBarElem extends BasePage {
 
-    private final SelenideElement menuBar = $(Locators.get("menubar")).shouldBe(Condition.exist);
+//    private final SelenideElement menuBar = $(Locators.get("menubar")).shouldBe(Condition.exist);
 
     @Element(хPath = "//*[@class='menu']")
     public final G2Button<MenuBarElem, MenuBarElem> saleBtn = new G2Button<>(this, this);
