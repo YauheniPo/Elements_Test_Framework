@@ -1,5 +1,6 @@
 package popo.elems.framework.base;
 
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -20,7 +21,8 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class BasePage<L extends BasePage> extends BaseEntity {
 
-    @NonNull public L landingPage;
+    @Getter
+    @NonNull private L landingPage;
     private static ResourcePropertiesManager testConfig = new ResourcePropertiesManager("testConfig.properties");
     private static final String APP_ELEMENTS_SOURCE = testConfig.getProperty("app.elements", "");
     private static final List<String> SUB_TYPES_ELEMENTS_FRAMEWORK = new Reflections(Constants.ELEMENTS_SOURCE).getSubTypesOf(Element.class)

@@ -6,11 +6,9 @@ import popo.elems.framework.base.BasePage;
 
 @Log4j2
 @NoArgsConstructor
-public class MainWatchCo<L extends BasePage> extends BasePage {
+public class MainWatchCo extends BasePage {
 
-    public final MenuBar menuBar = new MenuBar();
-
-    public MainWatchCo(L landingPage) {
-        super(landingPage);
+    public MenuBar<MainWatchCo> getMenuBar() {
+        return new MenuBar<>(new MainWatchCo());
     }
 }

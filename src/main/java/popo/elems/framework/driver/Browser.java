@@ -23,7 +23,6 @@ public final class Browser {
     private static final Long IMPLICITLY_WAIT = Long.valueOf(rpBrowser.getProperty("browser.timeout"));
     @Getter private static final Long PAGE_LOADING_WAIT = Long.valueOf(rpBrowser.getProperty("browser.pagetimeout"));
     private static final boolean IS_BROWSER_HEADLESS = Boolean.valueOf(rpBrowser.getProperty("browser.headless"));
-    public static final String LOCATORS = rpBrowser.getProperty("locators");
     private static BrowserType currentBrowser = BrowserType.valueOf((System.getenv("browser") == null
             ? rpBrowser.getProperty("browser") : System.getenv("browser")).toUpperCase(Locale.ENGLISH));
 
