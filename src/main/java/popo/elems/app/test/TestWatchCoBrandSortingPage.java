@@ -19,7 +19,7 @@ public class TestWatchCoBrandSortingPage extends BaseTest {
 
         BrandPage brandPage = (BrandPage) new MainWatchCo().getMenuBar().menBtn.clickButton().fetchItemOfMenuElement(luminoxWatch).clickButton();
         int count = brandPage.sortingPanel.getSortingItemsCount(analogSort);
-        int actualCount = brandPage.sortingPanel.switchSortingItem(analogSort).getLandingPage().productsPanel.getCountWatches();
+        int actualCount = brandPage.sortingPanel.switchSortingItem(analogSort).getLandingPage().productsPanel.getCountItems();
 
         assertHelper.assertThatTrue(actualCount == count,
                 String.format("Sorting count of watches %s does not match %d, exists %d watch(es)", luminoxWatch.getItem(), count, actualCount));

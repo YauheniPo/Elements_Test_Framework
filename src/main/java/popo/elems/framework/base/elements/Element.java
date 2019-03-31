@@ -47,16 +47,16 @@ public class Element<L extends BasePage> extends BaseElement implements ISetup {
         return this;
     }
 
-    protected L clickElement(String xPath) {
+    public L clickElement(String xPath) {
         $(byXpath(getXPath(xPath))).shouldBe(Condition.enabled).click();
         return this.landingPage;
     }
 
-    protected L clickElement() {
+    public L clickElement() {
         return clickElement(this.xPath);
     }
 
-    protected boolean isElementExists(String xPath) {
+    public boolean isElementExists(String xPath) {
         return $(byXpath(getXPath(xPath))).exists();
     }
 
@@ -64,19 +64,19 @@ public class Element<L extends BasePage> extends BaseElement implements ISetup {
         return isElementExists(this.xPath);
     }
 
-    protected String getText() {
+    public String getText() {
         return getText(this.xPath);
     }
 
-    protected String getText(String xPath) {
+    public String getText(String xPath) {
         return $(byXpath(getXPath(xPath))).getText();
     }
 
-    protected SelenideElement findElement(String xPath) {
+    public SelenideElement findElement(String xPath) {
         return $(byXpath(getXPath(xPath)));
     }
 
-    protected ElementsCollection findElements(String xPath) {
+    public ElementsCollection findElements(String xPath) {
         return $$(byXpath(getXPath(xPath)));
     }
 

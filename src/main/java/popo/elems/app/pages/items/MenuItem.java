@@ -10,7 +10,8 @@ public enum MenuItem {
     TOP_WATCH_BRANDS_MAIN_MENU_ITEM("Top Watch Brands"),
     ALL("ALL"),
 
-    LUMINOX("Luminox");
+    LUMINOX("Luminox"),
+    SKAGEN("Skagen");
 
     private String item;
 }
