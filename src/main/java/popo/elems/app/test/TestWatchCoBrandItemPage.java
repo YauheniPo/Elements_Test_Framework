@@ -12,15 +12,27 @@ import popo.elems.framework.base.BaseTest;
 public class TestWatchCoBrandItemPage extends BaseTest {
 
     @Test(groups = {"item", "brand", "menu"})
-    public void testSortingWatchBrandItem() {
+    public void testWatchBrandItemLabel() {
         final MenuItem skagenWatch = MenuItem.SKAGEN;
 
         BrandPage brandPage = (BrandPage) new MainWatchCo().getMenuBar().menBtn.clickButton().fetchItemOfMenuElement(skagenWatch).clickButton();
         String titleItem = brandPage.productsPanel.getTitleFirstItem();
-        ItemPage itemPage = brandPage.productsPanel.clickFirstItem();
-        String lableItem = itemPage.productLbl.getText();
+        String lableItem = brandPage.productsPanel.clickFirstItem().productLbl.getText();
 
         assertHelper.assertThatTrue(titleItem.equals(lableItem),
                 String.format("Brand Item label '%s' does not match '%s'", titleItem, lableItem));
+    }
+
+    @Test(groups = {"item", "brand", "menu"})
+    public void testWatchBrandItemCurrency() {
+        final MenuItem skagenWatch = MenuItem.SKAGEN;
+        final String currency = "$";
+
+        ItemPage itemPage = ((BrandPage) new MainWatchCo().getMenuBar().menBtn.clickButton()
+                .fetchItemOfMenuElement(skagenWatch).clickButton()).productsPanel.clickFirstItem();
+        String currencyItem = itemPage.getPriceCurrency();
+
+        assertHelper.assertThatTrue(currency.equals(currencyItem),
+                String.format("Brand Item currency '%s' does not match '%s'", currencyItem, currency));
     }
 }
