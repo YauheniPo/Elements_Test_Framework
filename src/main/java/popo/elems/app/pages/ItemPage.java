@@ -1,6 +1,7 @@
 package popo.elems.app.pages;
 
 import popo.elems.app.pages.locators.BrandItemLocators;
+import popo.elems.framework.base.elements.Button;
 import popo.elems.framework.base.elements.Label;
 import popo.elems.framework.base.elements.annotation.IElement;
 
@@ -12,6 +13,8 @@ public class ItemPage extends MainWatchCo implements BrandItemLocators {
     public final Label<ItemPage> productLbl = new Label<>(this);
     @IElement(xPath = PRICE_LABEL_LOCATOR)
     public final Label<ItemPage> priceLbl = new Label<>(this);
+    @IElement(xPath = ADD_TO_CART_BTN_LOCATOR)
+    public final Button<ItemPage, CartPage> addToCartBtn = new Button<>(this, new CartPage());
 
     public ItemPage() {
         initElements();

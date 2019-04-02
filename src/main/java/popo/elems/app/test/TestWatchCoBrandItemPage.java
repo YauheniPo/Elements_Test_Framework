@@ -11,7 +11,7 @@ import popo.elems.framework.base.BaseTest;
 @Log4j2
 public class TestWatchCoBrandItemPage extends BaseTest {
 
-    @Test(groups = {"item", "brand", "menu"})
+    @Test(groups = {"item", "brand"})
     public void testWatchBrandItemLabel() {
         final MenuItem skagenWatch = MenuItem.SKAGEN;
 
@@ -23,7 +23,7 @@ public class TestWatchCoBrandItemPage extends BaseTest {
                 String.format("Brand Item label '%s' does not match '%s'", titleItem, lableItem));
     }
 
-    @Test(groups = {"item", "brand", "menu"})
+    @Test(groups = {"item", "brand"})
     public void testWatchBrandItemCurrency() {
         final MenuItem skagenWatch = MenuItem.SKAGEN;
         final String currency = "$";
@@ -34,5 +34,17 @@ public class TestWatchCoBrandItemPage extends BaseTest {
 
         assertHelper.assertThatTrue(currency.equals(currencyItem),
                 String.format("Brand Item currency '%s' does not match '%s'", currencyItem, currency));
+    }
+
+    @Test(groups = {"item", "brand", "cart"})
+    public void testWatchBrandItemCartPageProceedToCheckoutBtnIsExist() {
+        final MenuItem skagenWatch = MenuItem.SKAGEN;
+
+        boolean continueShoppingBtnIsExist = ((BrandPage) new MainWatchCo().getMenuBar().menBtn.clickButton()
+                .fetchItemOfMenuElement(skagenWatch).clickButton()).productsPanel.clickFirstItem().addToCartBtn.clickButton()
+                .continueShoppingBtn.isElementExists();
+
+        assertHelper.assertThatTrue(continueShoppingBtnIsExist,
+                "Continue Shopping Button in Cart Page does not exist");
     }
 }
