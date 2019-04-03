@@ -52,6 +52,11 @@ public class Element<L extends BasePage> extends BaseElement implements ISetup {
         return this.landingPage;
     }
 
+    public Element<L> hover() {
+        $(byXpath(getXPath())).shouldBe(Condition.exist).hover();
+        return this;
+    }
+
     public L clickElement() {
         return clickElement(this.xPath);
     }

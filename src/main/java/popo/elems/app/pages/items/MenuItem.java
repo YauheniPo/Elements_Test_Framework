@@ -11,6 +11,7 @@ public enum MenuItem {
     ALL("ALL"),
 
     LUMINOX("Luminox"),
+    CITIZEN("Citizen"),
     SKAGEN("Skagen");
 
     private String item;

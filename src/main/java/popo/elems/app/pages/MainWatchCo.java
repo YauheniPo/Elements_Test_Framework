@@ -11,4 +11,8 @@ public class MainWatchCo extends BasePage {
     public MenuBar<MainWatchCo> getMenuBar() {
         return new MenuBar<>(new MainWatchCo());
     }
+
+    public HeaderContainer<MainWatchCo> getHeaderContainer() {
+        return new HeaderContainer<>(new MainWatchCo());
+    }
 }

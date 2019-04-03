@@ -35,16 +35,4 @@ public class TestWatchCoBrandItemPage extends BaseTest {
         assertHelper.assertThatTrue(currency.equals(currencyItem),
                 String.format("Brand Item currency '%s' does not match '%s'", currencyItem, currency));
     }
-
-    @Test(groups = {"item", "brand", "cart"})
-    public void testWatchBrandItemCartPageProceedToCheckoutBtnIsExist() {
-        final MenuItem skagenWatch = MenuItem.SKAGEN;
-
-        boolean continueShoppingBtnIsExist = ((BrandPage) new MainWatchCo().getMenuBar().menBtn.clickButton()
-                .fetchItemOfMenuElement(skagenWatch).clickButton()).productsPanel.clickFirstItem().addToCartBtn.clickButton()
-                .continueShoppingBtn.isElementExists();
-
-        assertHelper.assertThatTrue(continueShoppingBtnIsExist,
-                "Continue Shopping Button in Cart Page does not exist");
-    }
 }
