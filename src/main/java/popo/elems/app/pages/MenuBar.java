@@ -1,6 +1,6 @@
 package popo.elems.app.pages;
 
-import lombok.Getter;
+import io.qameta.allure.Step;
 import popo.elems.app.pages.items.MenuItem;
 import popo.elems.app.pages.locators.MenuBarLocators;
 import popo.elems.framework.base.BasePage;
@@ -8,8 +8,6 @@ import popo.elems.framework.base.elements.Button;
 import popo.elems.framework.base.elements.annotation.IElement;
 
 public class MenuBar<L extends BasePage> extends BasePage implements MenuBarLocators {
-
-    @Getter private L landingPage;
 
     @IElement(xPath = SALE_BTN_LOCATOR)
     public final Button<MenuBar, MenuBar> saleBtn = new Button<>(this, this);
@@ -22,10 +20,10 @@ public class MenuBar<L extends BasePage> extends BasePage implements MenuBarLoca
 
     public MenuBar(L landingPage) {
         super(landingPage);
-        this.landingPage = landingPage;
         initElements();
     }
 
+    @Step
     public Button<MenuBar, BrandPage> fetchItemOfMenuElement(MenuItem item) {
         return itemWatchBtn.setXPathPart(item.getItem());
     }

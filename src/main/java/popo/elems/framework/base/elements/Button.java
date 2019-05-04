@@ -1,20 +1,18 @@
 package popo.elems.framework.base.elements;
 
-import lombok.NoArgsConstructor;
+import io.qameta.allure.Step;
 import popo.elems.framework.base.BasePage;
 
-@NoArgsConstructor
-public class Button<L extends BasePage, T extends BasePage> extends Element {
+public class Button<L extends BasePage, T extends BasePage> extends WebElement {
 
-    private L landingPage;
     private T targetPage;
 
     public Button(L landingPage, T targetPage) {
         super(landingPage);
-        this.landingPage = landingPage;
         this.targetPage = targetPage;
     }
 
+    @Step
     public T clickButton() {
         clickElement();
         return this.targetPage;

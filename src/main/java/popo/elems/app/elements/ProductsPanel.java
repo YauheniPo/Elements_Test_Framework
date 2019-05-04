@@ -1,35 +1,36 @@
 package popo.elems.app.elements;
 
-import lombok.Getter;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import popo.elems.framework.base.BasePage;
-import popo.elems.framework.base.elements.Element;
+import popo.elems.framework.base.elements.WebElement;
 import popo.elems.framework.helpers.Locators;
 
-public class ProductsPanel<L extends BasePage, T extends BasePage> extends Element {
+public class ProductsPanel<L extends BasePage, T extends BasePage> extends WebElement {
 
-    @Getter private L landingPage;
-    @Getter private T targetPage;
+    private T targetPage;
     private final By byItems = Locators.getByXpath(".//li");
     private final By byFirstItem = Locators.getByClassName("item-area");
     private final By byFirstItemTitle = Locators.getByClassName("product-name");
 
     public ProductsPanel(L landingPage, T targetPage) {
         super(landingPage);
-        this.landingPage = landingPage;
         this.targetPage = targetPage;
     }
 
+    @Step
     public int getCountItems() {
-        return fetchElement().getSelenideElement().findAll(byItems).size();
+        return fetchElement().findAll(byItems).size();
     }
 
+    @Step
     public T clickFirstItem() {
-        fetchElement().getSelenideElement().findAll(byFirstItem).get(0).click();
+        fetchElement().findAll(byFirstItem).get(0).click();
         return this.targetPage;
     }
 
+    @Step
     public String getTitleFirstItem() {
-        return fetchElement().getSelenideElement().findAll(byFirstItemTitle).get(0).getText();
+        return fetchElement().findAll(byFirstItemTitle).get(0).getText();
     }
 }

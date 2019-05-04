@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import popo.elems.framework.util.OSValidator;
 import popo.elems.framework.util.ResourcePropertiesManager;
@@ -21,18 +22,17 @@ public final class Browser {
     private static ResourcePropertiesManager rpBrowser = new ResourcePropertiesManager("browser.properties");
     @Getter private static final String BROWSER_URL = String.format(rpStage.getProperty("url"), rpStage.getProperty("stage"));
     private static final Long IMPLICITLY_WAIT = Long.valueOf(rpBrowser.getProperty("browser.timeout"));
-    @Getter private static final Long PAGE_LOADING_WAIT = Long.valueOf(rpBrowser.getProperty("browser.pagetimeout"));
     private static final boolean IS_BROWSER_HEADLESS = Boolean.valueOf(rpBrowser.getProperty("browser.headless"));
     private static BrowserType currentBrowser = BrowserType.valueOf((System.getenv("browser") == null
             ? rpBrowser.getProperty("browser") : System.getenv("browser")).toUpperCase(Locale.ENGLISH));
+    public static final Long EXIST_LOADING_WAIT = Long.valueOf(rpBrowser.getProperty("browser.existtimeout"));
 
-    public static void getInstance(String browserName) {
+    public static void getInstance() {
         if (instance == null) {
             synchronized (Browser.class) {
                 instance = new Browser();
             }
         }
-        setBrowser(browserName);
     }
 
     private static synchronized void setBrowser(String browserName) {
@@ -43,27 +43,29 @@ public final class Browser {
     }
 
     private static void fetchNewDriver() {
+        setBrowserSettings();
+        log.info(String.format("*************** %s ***************", getDriver().getCapabilities().getBrowserName()).toUpperCase(Locale.ENGLISH));
+    }
+
+    private static void setBrowserSettings() {
         Configuration.timeout = IMPLICITLY_WAIT;
         Configuration.headless = IS_BROWSER_HEADLESS;
         Configuration.baseUrl = BROWSER_URL;
         Configuration.startMaximized = true;
         DriverFactory.setUp(currentBrowser);
-        log.info(String.format("*************** %s ***************",
-                ((RemoteWebDriver) WebDriverRunner.getAndCheckWebDriver()).getCapabilities().getBrowserName()).toUpperCase(Locale.ENGLISH));
     }
 
     private static void windowMaximize() {
-        log.info(String.format("Initial window size: %s", getDriver().manage().window().getSize()));
+        WebDriver.Window window = getDriver().manage().window();
         if (OSValidator.isUnix()) {
-            Dimension d = new Dimension(1920, 1080);
-            getDriver().manage().window().setSize(d);
+            window.setSize(new Dimension(1920, 1080));
         } else if (OSValidator.isWindows()) {
-            getDriver().manage().window().maximize();
+            window.maximize();
         }
-        log.info(String.format("Final window size: %s", getDriver().manage().window().getSize()));
     }
 
-    public static void openStartPage() {
+    public static void openStartPage(String browserName) {
+        setBrowser(browserName);
         Selenide.open("/");
         windowMaximize();
     }
@@ -73,7 +75,7 @@ public final class Browser {
     }
 
     public static RemoteWebDriver getDriver() {
-        return (RemoteWebDriver) WebDriverRunner.getWebDriver();
+        return (RemoteWebDriver) WebDriverRunner.getAndCheckWebDriver();
     }
 
     @AllArgsConstructor()

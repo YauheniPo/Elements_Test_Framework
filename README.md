@@ -3,7 +3,7 @@
 mvn clean package
 
 mvn clean -DskipTests=true package
-mvn clean install -Dhttp.keepAlive=false -DskipTests=true -Dmaven.wagon.http.pool=false
+mvn clean install -DskipTests=true -Dhttp.keepAlive=false -Dmaven.wagon.http.pool=false
 
 java -jar target\elements_test_framework-1.0-shaded.jar --xml testng.xml
 

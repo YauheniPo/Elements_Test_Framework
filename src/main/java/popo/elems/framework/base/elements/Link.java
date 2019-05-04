@@ -2,7 +2,7 @@ package popo.elems.framework.base.elements;
 
 import popo.elems.framework.base.BasePage;
 
-public class Link<L extends BasePage, T extends BasePage> extends Element {
+public class Link<L extends BasePage, T extends BasePage> extends WebElement {
 
     private T targetPage;
 

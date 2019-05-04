@@ -2,28 +2,36 @@ package popo.elems.app.test;
 
 import lombok.extern.log4j.Log4j2;
 import org.testng.annotations.Test;
+import popo.elems.app.TestGroup;
 import popo.elems.app.pages.BrandPage;
 import popo.elems.app.pages.ItemPage;
 import popo.elems.app.pages.MainWatchCo;
 import popo.elems.app.pages.items.MenuItem;
 import popo.elems.framework.base.BaseTest;
+import ru.yandex.qatools.allure.annotations.Description;
+import ru.yandex.qatools.allure.annotations.Severity;
+import ru.yandex.qatools.allure.model.SeverityLevel;
 
 @Log4j2
 public class TestWatchCoBrandItemPage extends BaseTest {
 
-    @Test(groups = {"item", "brand"})
+    @Description(value = "Validation of Brand item label")
+    @Severity(value = SeverityLevel.NORMAL)
+    @Test(groups = {TestGroup.ITEM, TestGroup.BRAND})
     public void testWatchBrandItemLabel() {
         final MenuItem skagenWatch = MenuItem.SKAGEN;
 
         BrandPage brandPage = (BrandPage) new MainWatchCo().getMenuBar().menBtn.clickButton().fetchItemOfMenuElement(skagenWatch).clickButton();
         String titleItem = brandPage.productsPanel.getTitleFirstItem();
-        String lableItem = brandPage.productsPanel.clickFirstItem().productLbl.getText();
+        String labelItem = brandPage.productsPanel.clickFirstItem().productLbl.getText();
 
-        assertHelper.assertThatTrue(titleItem.equals(lableItem),
-                String.format("Brand Item label '%s' does not match '%s'", titleItem, lableItem));
+        assertHelper.assertThatTrue(titleItem.equals(labelItem),
+                String.format("Brand Item label '%s' does not match '%s'", titleItem, labelItem));
     }
 
-    @Test(groups = {"item", "brand"})
+    @Description(value = "Validation of Brand item currency")
+    @Severity(value = SeverityLevel.NORMAL)
+    @Test(groups = {TestGroup.ITEM, TestGroup.BRAND})
     public void testWatchBrandItemCurrency() {
         final MenuItem skagenWatch = MenuItem.SKAGEN;
         final String currency = "$";

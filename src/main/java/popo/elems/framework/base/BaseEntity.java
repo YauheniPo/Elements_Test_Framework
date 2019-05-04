@@ -41,8 +41,8 @@ public class BaseEntity {
         try {
             ThreadContext.put(LOGGER_THREAD_CONTEXT, m.getName() + "-" + Thread.currentThread().getId());
 
-            Browser.getInstance(browserName);
-            Browser.openStartPage();
+            Browser.getInstance();
+            Browser.openStartPage(browserName);
         } catch (Throwable throwable) {
             log.fatal(ExceptionUtils.getStackTrace(throwable));
         }

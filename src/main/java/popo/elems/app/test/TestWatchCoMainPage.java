@@ -2,14 +2,20 @@ package popo.elems.app.test;
 
 import lombok.extern.log4j.Log4j2;
 import org.testng.annotations.Test;
+import popo.elems.app.TestGroup;
 import popo.elems.app.pages.MainWatchCo;
 import popo.elems.app.pages.items.MenuItem;
 import popo.elems.framework.base.BaseTest;
+import ru.yandex.qatools.allure.annotations.Description;
+import ru.yandex.qatools.allure.annotations.Severity;
+import ru.yandex.qatools.allure.model.SeverityLevel;
 
 @Log4j2
 public class TestWatchCoMainPage extends BaseTest {
 
-    @Test(groups = {"menu"})
+    @Description(value = "Validation of Menu item")
+    @Severity(value = SeverityLevel.NORMAL)
+    @Test(groups = {TestGroup.MENU})
     public void testHeaderWomenItem() {
         MenuItem topWatchBrandsMainMenuItem = MenuItem.TOP_WATCH_BRANDS_MAIN_MENU_ITEM;
 
@@ -17,7 +23,9 @@ public class TestWatchCoMainPage extends BaseTest {
                 String.format("%s does not exist", topWatchBrandsMainMenuItem.getItem()));
     }
 
-    @Test(groups = {"menu"})
+    @Description(value = "Validation of Menu item")
+    @Severity(value = SeverityLevel.NORMAL)
+    @Test(groups = {TestGroup.MENU})
     public void testHeaderMenItem() {
         MenuItem topWatchBrandsMainMenuItem = MenuItem.TOP_WATCH_BRANDS_MAIN_MENU_ITEM;
 
@@ -25,7 +33,9 @@ public class TestWatchCoMainPage extends BaseTest {
                 String.format("%s does not exist", topWatchBrandsMainMenuItem.getItem()));
     }
 
-    @Test(groups = {"menu", "test"})
+    @Description(value = "Validation of Menu item")
+    @Severity(value = SeverityLevel.NORMAL)
+    @Test(groups = {TestGroup.MENU})
     public void testHeaderSaleItemElem() {
         MenuItem allMenuItem = MenuItem.ALL;
 

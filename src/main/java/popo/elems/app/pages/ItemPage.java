@@ -1,5 +1,6 @@
 package popo.elems.app.pages;
 
+import io.qameta.allure.Step;
 import popo.elems.app.pages.locators.BrandItemLocators;
 import popo.elems.framework.base.elements.Button;
 import popo.elems.framework.base.elements.Label;
@@ -20,6 +21,7 @@ public class ItemPage extends MainWatchCo implements BrandItemLocators {
         initElements();
     }
 
+    @Step
     public String getPriceCurrency() {
         return this.priceLbl.getText().replaceAll(REG_EXP_NUMBERS, "");
     }
