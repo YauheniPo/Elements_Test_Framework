@@ -1,44 +1,27 @@
 package popo.elems.framework.helpers.config;
 
+import lombok.Getter;
 import lombok.extern.log4j.Log4j2;
-import org.apache.logging.log4j.ThreadContext;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.ImportResource;
-import popo.elems.framework.driver.Browser;
-
-import java.io.IOException;
-import java.net.*;
-
-import static popo.elems.framework.Constants.LOGGER_THREAD_CONTEXT;
+import org.springframework.context.annotation.PropertySource;
 
 @Log4j2
 @Configuration
-@ComponentScan("popo.elems.framework")
-@ImportResource("classpath:spring.xml")
+@PropertySource(ignoreResourceNotFound = true, value = "classpath:stage.properties")
 public class TestFrameworkConfig {
 
-    @Bean
-    private static void setLoger() {
-        ThreadContext.put(LOGGER_THREAD_CONTEXT, "");
-    }
+    @Getter
+    @Value("${url}")
+    private String stageUrl;
+
+    @Getter
+    @Value("${stage}")
+    private String stage;
 
     @Bean
-    private static Boolean netIsAvailable() {
-        try {
-            final URL url = new URL(Browser.getBROWSER_URL());
-            final URLConnection conn = url.openConnection();
-            conn.connect();
-            conn.getInputStream().close();
-            log.info("Network connection is available.");
-            return true;
-        } catch (MalformedURLException e) {
-            log.error(e.getMessage());
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            log.info("Network connection does not available.");
-            return false;
-        }
+    public String getUrl() {
+        return String.format(stageUrl, stage);
     }
 }

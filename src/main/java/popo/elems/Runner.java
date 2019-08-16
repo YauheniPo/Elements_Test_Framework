@@ -46,11 +46,6 @@ public class Runner {
                             log.error("Error for TestNG xml files", e);
                         }
                     }
-//                    suites.add((new Parser(URLDecoder.decode(getSystemResource(xml).getPath(), "UTF-8"))).parse().stream().findFirst().get());
-//                    suites.add((new Parser(Paths.get("target", "test-classes", xml).toString()).parse()).stream().findFirst().get());
-
-//                    URL url = new URL("jar:file:/absolute/location/of/yourJar.jar!/1.txt");
-//                    InputStream is = url.openStream();
                 }
             }
 
@@ -63,21 +58,12 @@ public class Runner {
             List<XmlClass> classes = new ArrayList<> ();
             setTestngXmlClasses(options, classes);
 
-//            XmlInclude testLogin = new XmlInclude("testLogin");
-//            List<XmlInclude> includes = new ArrayList<>();
-//            includes.add(testLogin);
-//            xmlClass.setIncludedMethods(includes);
-
             setTestngXmlGroupsPackages(options, myTest);
             if (args.length == 0) {
                 setTestngXmlPackages(options, myTest);
             }
 
             myTest.setXmlClasses(classes); //testNG.setTestClasses(new Class[] { TestWatchCoMainPage.class });
-
-//            List<XmlTest> myTests = new ArrayList<>();
-//            myTests.add(myTest);
-//            new XmlSuite().setTests(myTests);
 
             suites.add(suite);
 
