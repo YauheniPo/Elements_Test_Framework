@@ -26,7 +26,7 @@ jobs:
       jdkVersionOption: '1.8'
       jdkArchitectureOption: 'x64'
       publishJUnitResults: false
-      goals: 'clean install -DskipTests=true -Dhttp.keepAlive=false -Dmaven.wagon.http.pool=false'
+      goals: 'clean install -Dhttp.keepAlive=false -Dmaven.wagon.http.pool=false'
 #      goals: 'eclipse:clean prepare-package'
 #      goals: 'clean -DskipTests=true package'
 #      goals: 'clean test -DsuiteFile=testng-groups.xml'
