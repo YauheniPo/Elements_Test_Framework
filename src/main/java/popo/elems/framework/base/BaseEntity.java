@@ -16,6 +16,7 @@ import popo.elems.framework.driver.Browser;
 import popo.elems.framework.helpers.config.TestFrameworkConfig;
 import popo.elems.framework.helpers.listener.TestListener;
 import popo.elems.framework.util.NetworkHelper;
+import popo.elems.framework.util.OSValidator;
 
 import java.lang.reflect.Method;
 
@@ -32,7 +33,7 @@ public class BaseEntity extends AbstractTestNGSpringContextTests {
     @BeforeSuite
     public void beforeSuite() {
         ThreadContext.put(LOGGER_THREAD_CONTEXT, "");
-
+        log.info(String.format("---------------- %s ----------------", OSValidator.OS));
         try {
             super.springTestContextPrepareTestInstance();
         } catch (Exception e) {
