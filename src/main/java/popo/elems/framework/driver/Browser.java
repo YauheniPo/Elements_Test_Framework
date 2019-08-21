@@ -36,8 +36,8 @@ public final class Browser {
     }
 
     private static synchronized void setBrowser(String browserName) {
-        if (!BrowserType.valueOf(browserName.toUpperCase(Locale.ENGLISH)).equals(BrowserType.DEFAULT)) {
-            currentBrowser = BrowserType.valueOf(browserName.toUpperCase(Locale.ENGLISH));
+        if (!BrowserType.valueOf(browserName).equals(BrowserType.DEFAULT)) {
+            currentBrowser = BrowserType.valueOf(browserName);
         }
         fetchNewDriver();
     }
@@ -65,7 +65,7 @@ public final class Browser {
     }
 
     public static void openStartPage(String browserName) {
-        setBrowser(browserName);
+        setBrowser(browserName.toUpperCase(Locale.ENGLISH));
         Selenide.open("/");
         windowMaximize();
     }
